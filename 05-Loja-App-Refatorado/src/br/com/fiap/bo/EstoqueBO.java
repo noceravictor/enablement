@@ -2,16 +2,18 @@ package br.com.fiap.bo;
 
 import org.apache.log4j.Logger;
 
-import br.com.fiap.loja.TerminalConsulta;
 import br.com.fiap.loja.exception.ProdutoNaoEncontradoException;
 import br.com.fiap.loja.to.ProdutoTO;
 
 public class EstoqueBO {
 	private static Logger log = Logger.getLogger(EstoqueBO.class);
 
-	
+
 	public ProdutoTO consultarProduto(int codigo) throws ProdutoNaoEncontradoException{
 		ProdutoTO produto;
+		
+		log.debug("Código pesquisado: " + codigo);
+
 		
 		switch (codigo) {
 		case 401:
@@ -25,6 +27,7 @@ public class EstoqueBO {
 			break;
 
 		default:
+			log.error("Produto não encontrado: " + codigo);
 			throw new ProdutoNaoEncontradoException();
 		}
 		
